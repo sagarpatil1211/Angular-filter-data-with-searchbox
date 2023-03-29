@@ -1,8 +1,8 @@
 <div class="container mt-5">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <div class="col-lg-12">
-                <input type="text" class="form-control" [(ngModel)]="searchTerm" (click)="filter()">
+                <input type="text" class="form-control" [(ngModel)]="searchTerm" (input)="filter()">
             </div>
             <div class="col-lg-12 mt-3">
                 <h3>States</h3>
@@ -22,6 +22,31 @@
         
                 </table>
             </div>
+        </div>
+
+        <!-- ----------------------------------------------- -->
+
+        <div class="col-lg-7">
+            <p>To add search box on table </p>
+            <p>add input text with two way binding & <b>input</b> event(filter method) on it</p>
+            <p>then call filter method to search type text</p>
+            <h4>html file</h4>
+            <pre >
+            input type="text" class="form-control" 
+            (ngModel)]="searchTerm" (input) ="filter()"
+                </pre>
+
+
+            <h4>TS file</h4>
+            <pre >
+filter()&#123;
+    this.filteredstates = this.states.filter((data:any)=>&#123;
+    if(data.state.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1)&#123;
+        return data
+                      }
+                    })
+                  }
+            </pre>    
         </div>
     </div>
 </div>

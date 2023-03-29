@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   states:any;
-  searchTerm:any;
+  searchTerm:string = "";
   filteredstates:any;
 
   constructor(private http:HttpClient){
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get("http://awsmaster.mahamining.com/master/states/GetState").subscribe((result:any)=>{
-      // console.log(result.responseData);
+      console.log(result.responseData);
       this.states = result.responseData;
       this.filteredstates =  this.states;
       
@@ -25,11 +25,11 @@ export class AppComponent implements OnInit {
   }
 
   filter(){
-       this.filteredstates = this.states.filter((value:any, index:any)=>{
-        if(value.state.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1){
-          return value
-        }
-       }) 
+    this.filteredstates = this.states.filter((data:any)=>{
+      if(data.state.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1){
+        return data
+      }
+    })
   }
 
 }
